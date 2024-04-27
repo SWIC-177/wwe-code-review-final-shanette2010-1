@@ -35,7 +35,7 @@ export const CHAMPIONS = [
   "Awesome Truth",
   "A-Town Down Under",
   "The Kabuki Warriors",
-  "Ilja Dragunov ",
+  "Ilja Dragunov",
   "Roxanne Perez",
   "Oba Femi",
   "Nathan Frazer & Axiom",
