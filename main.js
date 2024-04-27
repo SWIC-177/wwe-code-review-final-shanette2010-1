@@ -1,3 +1,6 @@
 import { CHAMPIONS } from "./src/data";
 
-console.log(CHAMPIONS);
+// Alphabetize CHAMPIONS by last name
+const sortedChampions = CHAMPIONS.toSorted();
+
+console.log(sortedChampions);
