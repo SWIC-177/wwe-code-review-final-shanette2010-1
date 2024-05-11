@@ -150,6 +150,27 @@ describe("removeCorrespondingItemsByTerm", () => {
     expect(result.terms2).toEqual(expected.terms2);
   });
 
+  test("should remove the corresponding terms regardless of case", () => {
+    // Arrange - Set up the initial state
+    const initialState = {
+      terms1: ["Something", "Nothing", "Anything"],
+      terms2: ["Something else", "Nothing else", "Anything else"],
+      filterTerm: "SOMETHING",
+    };
+
+    const expected = {
+      terms1: ["Nothing", "Anything"],
+      terms2: ["Nothing else", "Anything else"],
+    };
+
+    // Act - Call the function with the initial state
+    const result = removeCorrespondingItemsByTerm(initialState);
+
+    // Assert - Check if the function correctly removes the corresponding items
+    expect(result.terms1).toEqual(expected.terms1);
+    expect(result.terms2).toEqual(expected.terms2);
+  });
+
   test("given no filter term, it should return the original terms", () => {
     // Arrange
     const terms1 = ["term1", "term2", "term3"];
