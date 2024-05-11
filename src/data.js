@@ -18,7 +18,7 @@ export const BELTS = [
 export const CHAMPIONS = [
   "Cody Rhodes",
   "Damian Priest",
-  "Vacant Title",
+  "Becky Lynch",
   "Bayley",
   "Sami Zayn",
   "Logan Paul",
