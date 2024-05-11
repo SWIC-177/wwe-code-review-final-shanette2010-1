@@ -1,4 +1,4 @@
-import { describe, expect, test } from "vitest";
+import { describe, expect, it } from "vitest";
 import {
   getLastName,
   merge2ArraysIntoAnArrayOfObjects,
@@ -6,7 +6,7 @@ import {
 } from "./lib";
 
 describe("getLastName", () => {
-  test("returns the last name from a full name", () => {
+  it("returns the last name from a full name", () => {
     // Arrange
     const fullName = "John Doe";
     const expected = "Doe";
@@ -18,7 +18,7 @@ describe("getLastName", () => {
     expect(result).toBe(expected);
   });
 
-  test("returns the last name from a full name with extra spaces", () => {
+  it("returns the last name from a full name with extra spaces", () => {
     // Arrange
     const fullName = "John    Doe";
     const expected = "Doe";
@@ -30,7 +30,7 @@ describe("getLastName", () => {
     expect(result).toBe(expected);
   });
 
-  test("returns the last name from a full name with extra spaces at the beginning", () => {
+  it("returns the last name from a full name with extra spaces at the beginning", () => {
     // Arrange
     const fullName = "   John Doe";
     const expected = "Doe";
@@ -42,7 +42,7 @@ describe("getLastName", () => {
     expect(result).toBe(expected);
   });
 
-  test("returns the last name from a full name with extra spaces at the end", () => {
+  it("returns the last name from a full name with extra spaces at the end", () => {
     // Arrange
     const fullName = "John Doe   ";
     const expected = "Doe";
@@ -54,7 +54,7 @@ describe("getLastName", () => {
     expect(result).toBe(expected);
   });
 
-  test("returns the last name from a multi-word full name", () => {
+  it("returns the last name from a multi-word full name", () => {
     // Arrange
     const fullName = "John Michael Doe";
     const expected = "Doe";
@@ -66,7 +66,7 @@ describe("getLastName", () => {
     expect(result).toBe(expected);
   });
 
-  test("returns the last name from a full name with special characters", () => {
+  it("returns the last name from a full name with special characters", () => {
     // Arrange
     const fullName = "Starsky & Hutch";
     const expected = "Hutch";
@@ -79,7 +79,7 @@ describe("getLastName", () => {
   });
 });
 
-test("merge2ArraysIntoAnArrayOfObjects", () => {
+it("merges 2️⃣ arrays into a an array of objects", () => {
   // Arrange
   const a1 = ["title1", "title2", "title3"];
   const a2 = ["champion1", "champion2", "champion3"];
@@ -100,7 +100,7 @@ test("merge2ArraysIntoAnArrayOfObjects", () => {
 });
 
 describe("removeCorrespondingItemsByTerm", () => {
-  test("given a filter term, it should remove the corresponding terms", () => {
+  it("should remove the terms that include the 'filter term'", () => {
     // Arrange
     const terms1 = ["term1", "term2", "term3"];
     const terms2 = ["corresponding1", "corresponding2", "corresponding3"];
@@ -123,7 +123,7 @@ describe("removeCorrespondingItemsByTerm", () => {
     expect(result.terms2).toEqual(expected.terms2);
   });
 
-  test("given a partial search term, it should remove the corresponding terms", () => {
+  it("should remove the terms that include a 'partial filter term'", () => {
     // Arrange
     const terms1 = ["something", "this"];
     const terms2 = ["wicked", "way"];
@@ -150,7 +150,7 @@ describe("removeCorrespondingItemsByTerm", () => {
     expect(result.terms2).toEqual(expected.terms2);
   });
 
-  test("should remove the corresponding terms regardless of case", () => {
+  it("should remove the corresponding terms regardless of case", () => {
     // Arrange - Set up the initial state
     const initialState = {
       terms1: ["Something", "Nothing", "Anything"],
@@ -171,7 +171,7 @@ describe("removeCorrespondingItemsByTerm", () => {
     expect(result.terms2).toEqual(expected.terms2);
   });
 
-  test("given no filter term, it should return the original terms", () => {
+  it("should return the original terms if the 'filter term' is empty", () => {
     // Arrange
     const terms1 = ["term1", "term2", "term3"];
     const terms2 = ["corresponding1", "corresponding2", "corresponding3"];
