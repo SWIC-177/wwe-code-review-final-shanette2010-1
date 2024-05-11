@@ -123,6 +123,33 @@ describe("removeCorrespondingItemsByTerm", () => {
     expect(result.terms2).toEqual(expected.terms2);
   });
 
+  test("given a partial search term, it should remove the corresponding terms", () => {
+    // Arrange
+    const terms1 = ["something", "this"];
+    const terms2 = ["wicked", "way"];
+    const filterTerm = "so";
+
+    /**
+     * Given `"so"`, `"something"`
+     * and the corresponding `"wicked"` should be removed 🔥
+     */
+    const expected = {
+      terms1: ["this"],
+      terms2: ["way"],
+    };
+
+    // Act
+    const result = removeCorrespondingItemsByTerm({
+      terms1,
+      terms2,
+      filterTerm,
+    });
+
+    // Assert - Check if the function correctly removes the corresponding items
+    expect(result.terms1).toEqual(expected.terms1);
+    expect(result.terms2).toEqual(expected.terms2);
+  });
+
   test("given no filter term, it should return the original terms", () => {
     // Arrange
     const terms1 = ["term1", "term2", "term3"];
