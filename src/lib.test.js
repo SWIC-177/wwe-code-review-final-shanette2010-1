@@ -1,8 +1,8 @@
 import { describe, expect, test } from "vitest";
 import {
   getLastName,
-  removeCorrespondingItemsByTerm,
   merge2ArraysIntoAnArrayOfObjects,
+  removeCorrespondingItemsByTerm,
 } from "./lib";
 
 describe("getLastName", () => {
@@ -99,21 +99,50 @@ test("merge2ArraysIntoAnArrayOfObjects", () => {
   expect(result).toEqual(expected);
 });
 
-test("removeCorrespondingItemsByTerm", () => {
-  // Arrange
-  const terms1 = ["term1", "term2", "term3"];
-  const terms2 = ["corresponding1", "corresponding2", "corresponding3"];
-  const filterTerm = "term2";
+describe("removeCorrespondingItemsByTerm", () => {
+  test("given a filter term, it should remove the corresponding terms", () => {
+    // Arrange
+    const terms1 = ["term1", "term2", "term3"];
+    const terms2 = ["corresponding1", "corresponding2", "corresponding3"];
+    const filterTerm = "term2";
 
-  const expected = {
-    terms1: ["term1", "term3"],
-    terms2: ["corresponding1", "corresponding3"],
-  };
+    const expected = {
+      terms1: ["term1", "term3"],
+      terms2: ["corresponding1", "corresponding3"],
+    };
 
-  // Act
-  const result = removeCorrespondingItemsByTerm({ terms1, terms2, filterTerm });
+    // Act
+    const result = removeCorrespondingItemsByTerm({
+      terms1,
+      terms2,
+      filterTerm,
+    });
 
-  // Assert - Check if the function correctly removes the corresponding items
-  expect(result.terms1).toEqual(expected.terms1);
-  expect(result.terms2).toEqual(expected.terms2);
+    // Assert - Check if the function correctly removes the corresponding items
+    expect(result.terms1).toEqual(expected.terms1);
+    expect(result.terms2).toEqual(expected.terms2);
+  });
+
+  test("given no filter term, it should return the original terms", () => {
+    // Arrange
+    const terms1 = ["term1", "term2", "term3"];
+    const terms2 = ["corresponding1", "corresponding2", "corresponding3"];
+    const filterTerm = "";
+
+    const expected = {
+      terms1: ["term1", "term2", "term3"],
+      terms2: ["corresponding1", "corresponding2", "corresponding3"],
+    };
+
+    // Act
+    const result = removeCorrespondingItemsByTerm({
+      terms1,
+      terms2,
+      filterTerm,
+    });
+
+    // Assert - Check if the function correctly returns the original terms
+    expect(result.terms1).toEqual(expected.terms1);
+    expect(result.terms2).toEqual(expected.terms2);
+  });
 });
