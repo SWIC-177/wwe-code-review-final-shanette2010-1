@@ -3,6 +3,26 @@ export function getLastName(fullName) {
   return splitName[splitName.length - 1];
 }
 
+/**
+ * TODO: Create a new ARRAY of objects called `CHAMPIONSHIPS`
+ * that contains the following properties:
+ *   - `title` - The name of the title.
+ *  - `champion` - The name of the champion.
+ */
+export function merge2ArraysIntoAnArrayOfObjects({ a1, a2, key1, key2 }) {
+  return a1.reduce((acc, item, index) => {
+    const accumulatedResults2Modify = [...acc];
+
+    return [
+      ...accumulatedResults2Modify,
+      {
+        [key1]: item,
+        [key2]: a2[index],
+      },
+    ];
+  }, []);
+}
+
 export function removeCorrespondingItemsByTerm({ terms1, terms2, filterTerm }) {
   return terms1.reduce(
     (accumulatedResults, term, index) => {
@@ -16,7 +36,7 @@ export function removeCorrespondingItemsByTerm({ terms1, terms2, filterTerm }) {
           term,
         ];
 
-        // Also add the corresponding term from `terms2` to the 'results arrays.'
+        // Also add the corresponding term from `terms2` to the 'results arrays
         accumulatedResults2Modify.terms2 = [
           ...accumulatedResults2Modify.terms2,
           terms2[index],
