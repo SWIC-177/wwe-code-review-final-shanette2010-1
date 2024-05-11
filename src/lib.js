@@ -24,14 +24,14 @@ export function removeCorrespondingItemsByTerm({ terms1, terms2, filterTerm }) {
           // Avoid any mutation or reassignment of the parameter object.
           const accumulatedResults2Modify = { ...accumulatedResults };
 
-          // As we iterate, if the current `term` does not include the `filterTerm`, add it to the 'results arrays.'
+          // If the current `term` DOES NOT include the `filterTerm`, keep it.
           if (!term.includes(filterTerm)) {
             accumulatedResults2Modify.terms1 = [
               ...accumulatedResults2Modify.terms1,
               term,
             ];
 
-            // Also add the corresponding term from `terms2` to the 'results arrays
+            // Add the corresponding term from `terms2` to the 'results arrays
             accumulatedResults2Modify.terms2 = [
               ...accumulatedResults2Modify.terms2,
               terms2[index],
