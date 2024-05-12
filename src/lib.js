@@ -17,21 +17,51 @@ export function merge2ArraysIntoAnArrayOfObjects({ a1, a2, key1, key2 }) {
   }, []);
 }
 
-export function removeCorrespondingItemsByTerm({ terms1, terms2, filterTerm }) {
-  return filterTerm
+/**
+ * Filters items by a given term.
+ *
+ * @param {Object} options - The options object.
+ * @param {string[]} options.terms1 - The first array of terms.
+ * @param {string[]} options.terms2 - The second array of terms.
+ * @param {string} options.actionTerm - The term to filter by.
+ * @param {boolean} [options.is2Keep=true] - If true, keep the terms...
+ * @returns {Object} - The filtered terms.
+ */
+export function filterItemsByTerm({
+  terms1,
+  terms2,
+  actionTerm,
+  is2Keep = true,
+}) {
+  return actionTerm
     ? terms1.reduce(
         (accumulatedResults, term, index) => {
-          // Avoid any mutation or reassignment of the parameter object.
           const accumulatedResults2Modify = { ...accumulatedResults };
 
-          // If the current `term` DOES NOT include the `filterTerm` (case insensitive), keep it.
-          if (!term.toLowerCase().includes(filterTerm.toLowerCase())) {
+          // If `is2Keep` is true, keep the terms that include the action term.
+          if (
+            is2Keep &&
+            term.toLowerCase().includes(actionTerm.toLowerCase())
+          ) {
             accumulatedResults2Modify.terms1 = [
               ...accumulatedResults2Modify.terms1,
               term,
             ];
+            accumulatedResults2Modify.terms2 = [
+              ...accumulatedResults2Modify.terms2,
+              terms2[index],
+            ];
+          }
 
-            // Add the corresponding term from `terms2` to the 'results arrays
+          // If `is2Keep` is false, remove terms that include the action term.
+          if (
+            !is2Keep &&
+            !term.toLowerCase().includes(actionTerm.toLowerCase())
+          ) {
+            accumulatedResults2Modify.terms1 = [
+              ...accumulatedResults2Modify.terms1,
+              term,
+            ];
             accumulatedResults2Modify.terms2 = [
               ...accumulatedResults2Modify.terms2,
               terms2[index],
@@ -40,8 +70,6 @@ export function removeCorrespondingItemsByTerm({ terms1, terms2, filterTerm }) {
 
           return accumulatedResults2Modify;
         },
-
-        // Initialize the results.
         { terms1: [], terms2: [] },
       )
     : { terms1, terms2 };
