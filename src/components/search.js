@@ -9,7 +9,7 @@ export default function Search({ searchValue }) {
           id="search"
           value="${searchValue}"
           autofocus
-        >
+        />
       </div>
     `;
 }
