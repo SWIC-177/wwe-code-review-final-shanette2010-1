@@ -1,8 +1,24 @@
+/**
+ * Retrieves the last name from a full name.
+ *
+ * @param {string} fullName - The full name.
+ * @returns {string} The last name.
+ */
 export function getLastName(fullName) {
   const splitName = fullName.trim().split(" ");
   return splitName[splitName.length - 1];
 }
 
+/**
+ * Merges two arrays into an array of objects based on specified keys.
+ *
+ * @param {Object} options - The options object.
+ * @param {Array} options.a1 - The first array.
+ * @param {Array} options.a2 - The second array.
+ * @param {string} options.key1 - The key for the first array elements.
+ * @param {string} options.key2 - The key for the second array elements.
+ * @returns {Array} - The merged array of objects.
+ */
 export function merge2ArraysIntoAnArrayOfObjects({ a1, a2, key1, key2 }) {
   return a1.reduce((acc, item, index) => {
     const accumulatedResults2Modify = [...acc];
