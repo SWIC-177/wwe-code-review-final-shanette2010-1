@@ -17,7 +17,13 @@ function render(st) {
   })}
   `;
 
-  document.getElementById("search").addEventListener("input", (e) => {
+  const searchInput = document.getElementById("search");
+  const searchValueLen = searchInput.value.length;
+
+  searchInput.focus();
+  searchInput.setSelectionRange(searchValueLen, searchValueLen);
+
+  searchInput.addEventListener("input", (e) => {
     // eslint-disable-next-line no-param-reassign -- It's a class with a setter!
     st.searchState = e.target.value;
     render(st);
